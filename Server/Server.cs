@@ -24,7 +24,7 @@ namespace Server
             messages = new Queue<Message>();
             users = new Dictionary<int, ISubscriber>();
             log = new TextLogger();
-            string computerIPAddress = GetComputerIPAddress();
+            string computerIPAddress = GetIPAddress();
             Console.WriteLine("Local Computer IP Address: " + computerIPAddress);
             Console.WriteLine();
             server = new TcpListener(IPAddress.Parse(computerIPAddress), 9999);
@@ -46,6 +46,17 @@ namespace Server
             return computerIPAddress;
         }
 
+        string GetIPAddress()
+        {
+            string hostName = Dns.GetHostName();
+            IPAddress[] ipaddress = Dns.GetHostAddresses(hostName);
+            string computerIPAddress = "127.0.0.1";
+            foreach (IPAddress ip4 in ipaddress.Where(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork))
+            {
+                computerIPAddress = ip4.ToString();
+            }
+            return computerIPAddress;
+        }
         public void Run()
         {
             while (true)

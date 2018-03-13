@@ -10,10 +10,9 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Please enter the IP Address for the Server Computer");
-            string serverIPAddress = Console.ReadLine();
+          
 
-            Client client = new Client(serverIPAddress, 9999);
+            Client client = new Client(9999);
             client.Run();
             Console.ReadLine();
         }

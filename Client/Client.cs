@@ -12,13 +12,24 @@ namespace Client
     {
         TcpClient clientSocket;
         NetworkStream stream;
-        public Client(string IP, int port)
+        public string serverIPAddress = "";
+            
+
+       
+        public Client(int port)
         {
+            while (serverIPAddress.Length < 13)
+            {
+                Console.WriteLine("Please enter the IP Address for the Server Computer");
+                serverIPAddress = UI.GetInput();
+            }
             clientSocket = new TcpClient();
-            clientSocket.Connect(IPAddress.Parse(IP), port);
+            clientSocket.Connect(IPAddress.Parse(serverIPAddress), port);
             stream = clientSocket.GetStream();
-            Console.WriteLine("Connected! Enter your display name:");
+            UI.DisplayMessage("Connected! Enter your display name:");
+            
             string displayName = UI.GetInput();
+     
             byte[] message = Encoding.ASCII.GetBytes(displayName);
             stream.Write(message, 0, message.Count());
         }
