@@ -30,8 +30,8 @@ namespace Server
 
         public void Send(Message message)
         {
-            Object recieveLock = new Object();
-            lock (recieveLock)
+            Object sendLock = new Object();
+            lock (sendLock)
             {
                 try
                 {
