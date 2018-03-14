@@ -24,28 +24,32 @@ namespace Server
             messages = new Queue<Message>();
             users = new Dictionary<int, ISubscriber>();
             log = new TextLogger();
-            string computerIPAddress = GetComputerIPAddress();
+            string computerIPAddress = GetIPAddress();
             Console.WriteLine("Local Computer IP Address: " + computerIPAddress);
             Console.WriteLine();
             server = new TcpListener(IPAddress.Parse(computerIPAddress), 9999);
             server.Start();
         }
 
-        string GetComputerIPAddress()
+
+
+        string GetIPAddress()
         {
             string hostName = Dns.GetHostName();
+<<<<<<< HEAD
             IPHostEntry host = Dns.GetHostEntry(hostName);
             string computerIPAddress = "127.168.0.115";
             foreach (var address in host.AddressList)
+=======
+            IPAddress[] ipaddress = Dns.GetHostAddresses(hostName);
+            string computerIPAddress = "127.0.0.1";
+            foreach (IPAddress ip4 in ipaddress.Where(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork))
+>>>>>>> c77c07a36999e867ee9c80899dfd9c91457e65bf
             {
-                if (address.AddressFamily.ToString().Equals("InterNetwork"))
-                {
-                    computerIPAddress = address.ToString();
-                }
+                computerIPAddress = ip4.ToString();
             }
             return computerIPAddress;
         }
-
         public void Run()
         {
             while (true)
