@@ -36,9 +36,11 @@ namespace Server
         string GetIPAddress()
         {
             string hostName = Dns.GetHostName();
+
             IPAddress[] ipaddress = Dns.GetHostAddresses(hostName);
             string computerIPAddress = "127.0.0.1";
             foreach (IPAddress ip4 in ipaddress.Where(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork))
+
             {
                 computerIPAddress = ip4.ToString();
             }

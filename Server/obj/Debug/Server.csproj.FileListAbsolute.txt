@@ -23,3 +23,6 @@ C:\Users\ztrai\OneDrive\Desktop\Dev\C#\ChatRoomFinal\Server\obj\Debug\Server.pdb
 \\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
 \\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Server\obj\Debug\Server.exe
 \\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Server\obj\Debug\Server.pdb
+C:\Users\ztrai\OneDrive\Desktop\Dev\C#\ChatRoomFinalTwo\Server\bin\Debug\Server.exe.config
+C:\Users\ztrai\OneDrive\Desktop\Dev\C#\ChatRoomFinalTwo\Server\obj\Debug\Server.exe
+C:\Users\ztrai\OneDrive\Desktop\Dev\C#\ChatRoomFinalTwo\Server\obj\Debug\Server.pdb
