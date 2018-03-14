@@ -11,3 +11,10 @@ C:\Users\ztrai\OneDrive\Desktop\Dev\C#\ChatRoomFinal\Client\obj\Debug\Client.csp
 C:\Users\ztrai\OneDrive\Desktop\Dev\C#\ChatRoomFinal\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
 C:\Users\ztrai\OneDrive\Desktop\Dev\C#\ChatRoomFinal\Client\obj\Debug\Client.exe
 C:\Users\ztrai\OneDrive\Desktop\Dev\C#\ChatRoomFinal\Client\obj\Debug\Client.pdb
+\\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Client\bin\Debug\Client.exe.config
+\\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Client\bin\Debug\Client.exe
+\\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Client\bin\Debug\Client.pdb
+\\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+\\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+\\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Client\obj\Debug\Client.exe
+\\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Client\obj\Debug\Client.pdb
