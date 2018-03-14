@@ -35,7 +35,7 @@ namespace Server
         {
             string hostName = Dns.GetHostName();
             IPHostEntry host = Dns.GetHostEntry(hostName);
-            string computerIPAddress = "127.0.0.1";
+            string computerIPAddress = "127.168.0.115";
             foreach (var address in host.AddressList)
             {
                 if (address.AddressFamily.ToString().Equals("InterNetwork"))
