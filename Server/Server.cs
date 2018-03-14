@@ -31,20 +31,7 @@ namespace Server
             server.Start();
         }
 
-        string GetComputerIPAddress()
-        {
-            string hostName = Dns.GetHostName();
-            IPHostEntry host = Dns.GetHostEntry(hostName);
-            string computerIPAddress = "127.0.0.1";
-            foreach (var address in host.AddressList)
-            {
-                if (address.AddressFamily.ToString().Equals("InterNetwork"))
-                {
-                    computerIPAddress = address.ToString();
-                }
-            }
-            return computerIPAddress;
-        }
+
 
         string GetIPAddress()
         {
