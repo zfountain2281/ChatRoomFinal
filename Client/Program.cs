@@ -153,6 +153,7 @@ namespace Client
             // 
             // buttonSend
             // 
+            this.buttonSend.Enabled = false;
             this.buttonSend.Location = new System.Drawing.Point(654, 685);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(190, 44);
@@ -160,7 +161,6 @@ namespace Client
             this.buttonSend.Text = "Send Message";
             this.buttonSend.UseVisualStyleBackColor = true;
             this.buttonSend.Click += new System.EventHandler(this.button1_Click_1);
-            this.buttonSend.Enabled = false;
             // 
             // groupBoxUserName
             // 
@@ -217,21 +217,28 @@ namespace Client
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private  void button1_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 client = new Client(9999, textBoxUserName.Text, ipAddressOfServer.Text);
                 
                 startConnectionButton.Enabled = false;
                 buttonSend.Enabled = true;
-                client.Receive();
+
+              client.Run(listChatRoomMessages);
+                
+                   
+              
+                
 
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+            
 
         }
 
@@ -241,8 +248,11 @@ namespace Client
                 try
                 {
                     client.Send(textMessageToSend.Text);
+                
 
-                }
+
+
+            }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());

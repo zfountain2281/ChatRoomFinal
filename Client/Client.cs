@@ -13,9 +13,11 @@ namespace Client
     {
         public TcpClient clientSocket;
         public NetworkStream stream;
+        public List<string> temporaryMessageList;
         public string serverIPAddress = "";
         string displayName;
-        int port = 9999;
+        
+        
 
 
 
@@ -27,20 +29,20 @@ namespace Client
             //    Console.WriteLine("Please enter the IP Address for the Server Computer");
             //    serverIPAddress = UI.GetInput();
             //}
-            
+            temporaryMessageList = new List<string>();
             this.displayName = displayName;
             this.serverIPAddress = serverIPAddress;
             clientSocket = new TcpClient();
             clientSocket.Connect(IPAddress.Parse(serverIPAddress), port);
             stream = clientSocket.GetStream();
             //UI.DisplayMessage("Connected! Enter your display name:");
-            
+
             //string displayName = UI.GetInput();
-     
+
             byte[] message = Encoding.ASCII.GetBytes(displayName);
             stream.Write(message, 0, message.Count());
         }
-       public Task Send(string typedMessage)
+        public Task Send(string typedMessage)
         {
             return Task.Run(() =>
             {
@@ -49,47 +51,70 @@ namespace Client
                 {
                     if (clientSocket.Connected)
                     {
-                 
+
                         byte[] message = Encoding.ASCII.GetBytes(typedMessage);
                         stream.Write(message, 0, message.Count());
                     }
                 }
             });
         }
-        public Task Receive()
+        public Task Receive(ListBox listBox)
         {
+
             return Task.Run(() =>
             {
                 Object messageLock = new Object();
                 lock (messageLock)
                 {
-                    if (clientSocket.Connected)
+                    while(temporaryMessageList.Count < 10)
                     {
+                        string message ="";
                         byte[] recievedMessage = new byte[256];
-                        UI.DisplayMessage(Encoding.ASCII.GetString(recievedMessage));
+                        message = Encoding.ASCII.GetString(recievedMessage);
+                        if (message.Count(char.IsLetter) >= 1)
+                        {
+                            temporaryMessageList.Add(message);
+                            //if (listBox.InvokeRequired)
+                            //{
+                            //    listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Add(message); }));
+                            //}
+                        }
+
                     }
+
                 }
+
             });
+
         }
 
-        public Task Run()
+        public void Run(ListBox listbox)
         {
-            while (true)
-            {
+            //while (true)
+            //{
 
-                Parallel.Invoke(
-                //This thread is always allowing the client to send new messages
-                //async () =>
-                //{
-                //    await Send(typedMessage);
-                //},
-                //This thread is always listening for new messages
-                async () =>
-                {
-                    await Receive();
-                });
-              
-                }
+            //Parallel.Invoke(
+
+
+            //    //This thread is always listening for new messages
+            //    async () =>
+            //    {
+            //        await Receive(listbox);
+            //    }
+            //);
+            System.Threading.Thread newThread = new System.Threading.Thread(() =>Receive(listbox));
+            newThread.Start();
+            //while (true)
+            //{
+                
+            //    Receive(listbox);
+            //}
+            //    async () =>
+            //    {
+            //        await Receive(listbox);
+            //    }
+            //);
+            //}
         }
     }
 }

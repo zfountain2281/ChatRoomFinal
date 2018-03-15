@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    class Client : ISubscriber
+     class Client : ISubscriber
     {
-        NetworkStream stream;
+        public NetworkStream stream;
         TcpClient client;
         public int UserId;
         public string displayName;
@@ -44,6 +44,8 @@ namespace Server
                 }
             }
         }
+
+        
 
         public Message Recieve()
         {

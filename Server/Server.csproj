@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="ILoggable.cs" />
+    <Compile Include="INotifier.cs" />
     <Compile Include="ISubscriber.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Program.cs" />

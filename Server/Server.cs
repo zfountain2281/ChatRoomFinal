@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    class Server
+    class Server: INotifier
     {
         //member variables
         Dictionary<int, ISubscriber> users;
@@ -70,6 +70,7 @@ namespace Server
                     {
                         await CheckIfConnected();
                     }
+                   
 
                 );
             }
@@ -116,6 +117,33 @@ namespace Server
                 }
             });
         }
+        Task SendUsers(Dictionary<int, ISubscriber> users, Client client)
+        {
+            return Task.Run(() =>
+            {
+                Object sendLock = new Object();
+                lock (sendLock)
+                {
+                    try
+                    {
+                        if (users.Count > 0)
+                        {
+                            for (int i = 0; i < users.Count; i++)
+                            {
+                                byte[] userName = Encoding.ASCII.GetBytes(users.Values.ElementAt(i).ToString());
+                                client.stream.Write(userName, 0, userName.Count());
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("An error occurred: '{0}'", e);
+                    }
+                }
+            });
+        }
+
+        
 
         Task SendUserMessage(Client user, Message message)
         {
@@ -184,15 +212,23 @@ namespace Server
                     Client user = new Client(stream, clientSocket);
                     user.displayName = user.ReceiveDisplayName();
                     users.Add(user.UserId, user);
-                    Message notification = new Message(user, "I've joined the chat!");
-                    log.Save(notification);
+                    Message newUserNotification =new Message(user, "");
+                    //Message notification = new Message(user, "I've joined the chat!");
+                    //log.Save(notification);
+                    NotifyUsersOfNewUser(newUserNotification, user);
                     for (int i = 0; i < users.Count; i++)
                     {
-                        users.ElementAt(i).Value.Send(notification);
+                        users.ElementAt(i).Value.Send(newUserNotification);
                     }
+                    //SendUsers(users, user);
                 }
             });
         }
 
+        public void NotifyUsersOfNewUser(Message notification, Client user)
+        {
+            notification = new Message(user, "I've joined the chat!");
+            log.Save(notification);
+        }
     }
 }
