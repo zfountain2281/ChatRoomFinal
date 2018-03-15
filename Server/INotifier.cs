@@ -8,6 +8,6 @@ namespace Server
 {
     interface INotifier
     {
-        void NotifyUsersOfNewUser(Message notification, Client user);
+        void NotifyUsersOfNewUser(Client user);
     }
 }

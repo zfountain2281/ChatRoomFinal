@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    class Server
+    class Server: INotifier
     {
         //member variables
         Dictionary<int, ISubscriber> users;
@@ -215,7 +215,7 @@ namespace Server
                     
                     //Message notification = new Message(user, "I've joined the chat!");
                     //log.Save(notification);
-                    NotifyUsersOfNewUser( user);
+                    NotifyUsersOfNewUser(user);
                     //for (int i = 0; i < users.Count; i++)
                     //{
                     //    users.ElementAt(i).Value.Send(newUserNotification);

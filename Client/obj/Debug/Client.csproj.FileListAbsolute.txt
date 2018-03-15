@@ -18,5 +18,3 @@ C:\Users\ztrai\OneDrive\Desktop\Dev\C#\ChatRoomFinal\Client\obj\Debug\Client.pdb
 \\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
 \\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Client\obj\Debug\Client.exe
 \\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Client\obj\Debug\Client.pdb
-\\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Client\obj\Debug\Client.Program.resources
-\\Mac\Home\Desktop\Dev_Code_Camp\Day_35\Chatroom\Client\obj\Debug\Client.csproj.GenerateResource.Cache
