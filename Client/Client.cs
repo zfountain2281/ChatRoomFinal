@@ -14,8 +14,6 @@ namespace Client
         NetworkStream stream;
         public string serverIPAddress = "";
 
-
-
         public Client(int port)
         {
             while (serverIPAddress.Length < 13)
@@ -33,6 +31,8 @@ namespace Client
             byte[] message = Encoding.ASCII.GetBytes(displayName);
             stream.Write(message, 0, message.Count());
         }
+
+
         Task Send()
         {
             return Task.Run(() =>
@@ -71,12 +71,12 @@ namespace Client
             while (true)
             {
                 Parallel.Invoke(
-                    //This thread is always allowing the client to send new messages
+                    
                     async () =>
                     {
                         await Send();
                     },
-                    //This thread is always listening for new messages
+                    
                     async () =>
                     {
                         await Receive();

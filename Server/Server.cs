@@ -212,15 +212,7 @@ namespace Server
                     Client user = new Client(stream, clientSocket);
                     user.displayName = user.ReceiveDisplayName();
                     users.Add(user.UserId, user);
-                    
-                    //Message notification = new Message(user, "I've joined the chat!");
-                    //log.Save(notification);
                     NotifyUsersOfNewUser(user);
-                    //for (int i = 0; i < users.Count; i++)
-                    //{
-                    //    users.ElementAt(i).Value.Send(newUserNotification);
-                    //}
-                    //SendUsers(users, user);
                 }
             });
         }
@@ -235,9 +227,6 @@ namespace Server
             }
         }
 
-        public void AcceptTcpClient()
-        {
-
-        }
+    
     }
 }
