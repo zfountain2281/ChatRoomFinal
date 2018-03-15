@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    class Server: INotifier
+    class Server
     {
         //member variables
         Dictionary<int, ISubscriber> users;
@@ -212,23 +212,32 @@ namespace Server
                     Client user = new Client(stream, clientSocket);
                     user.displayName = user.ReceiveDisplayName();
                     users.Add(user.UserId, user);
-                    Message newUserNotification =new Message(user, "");
+                    
                     //Message notification = new Message(user, "I've joined the chat!");
                     //log.Save(notification);
-                    NotifyUsersOfNewUser(newUserNotification, user);
-                    for (int i = 0; i < users.Count; i++)
-                    {
-                        users.ElementAt(i).Value.Send(newUserNotification);
-                    }
+                    NotifyUsersOfNewUser( user);
+                    //for (int i = 0; i < users.Count; i++)
+                    //{
+                    //    users.ElementAt(i).Value.Send(newUserNotification);
+                    //}
                     //SendUsers(users, user);
                 }
             });
         }
 
-        public void NotifyUsersOfNewUser(Message notification, Client user)
+        public void NotifyUsersOfNewUser(Client user)
         {
-            notification = new Message(user, "I've joined the chat!");
+            Message notification = new Message(user, "I've joined the chat!");
             log.Save(notification);
+            for (int i = 0; i < users.Count; i++)
+            {
+                users.ElementAt(i).Value.Send(notification);
+            }
+        }
+
+        public void AcceptTcpClient()
+        {
+
         }
     }
 }
